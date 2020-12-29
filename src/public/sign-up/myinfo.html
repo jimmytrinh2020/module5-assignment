@@ -1,0 +1,38 @@
+<div class="container">
+  <legend>My Info Page</legend>
+  <div ng-controller="MyInfoController as myinfo">
+    <div id="info" ng-if="myinfo.registeredUser === undefined">
+    Not Signed Up Yet.&nbsp&nbsp<a ui-sref="public.signup">Sign up Now!</a>
+    </div>
+    <div id="info" ng-if="myinfo.registeredUser !== undefined">
+      You Are Registered with the following Information:
+      <br><br>
+      &nbsp&nbsp&nbsp Name: {{myinfo.registeredUser.firstName}} {{myinfo.registeredUser.lastName}}<br>
+      &nbsp&nbsp&nbsp Email: {{myinfo.registeredUser.email}} <br>
+      &nbsp&nbsp&nbsp Phone: {{myinfo.registeredUser.phone}} <br>
+      &nbsp&nbsp&nbsp Favorite Menu Item: &nbsp{{myinfo.registeredUser.menuItem.name}} ({{myinfo.registeredUser.menuItem.short_name}})<br><br>
+      <div class="menu-item-title col-md-6">
+        <div class="row">
+          <div class="col-sm-5">
+            <div class="menu-item-photo">
+              <div>{{myinfo.registeredUser.menuItem.short_name}}</div>
+              <img class="img-reponsive"
+                width="250" height="150"
+                ng-src="{{myinfo.basePath}}/images/{{myinfo.registeredUser.menuItem.short_name}}.jpg"
+                alt="{{myinfo.registeredUser.menuItem.name}}">
+            </div>
+            <div class="menu-item-price">
+              {{myinfo.registeredUser.menuItem.price_small | currency}}<span>&nbsp{{myinfo.registeredUser.menuItem.small_portion_name}}</span>
+              {{myinfo.registeredUser.menuItem.price_large | currency}}<span>&nbsp{{myinfo.registeredUser.menuItem.large_portion_name}}</span>
+            </div>
+            <div class="menu-item-description">
+              <h3 class="menu-item-title">{{myinfo.registeredUser.menuItem.name}}</h3>
+              <p class="menu-item-details">{{myinfo.registeredUser.menuItem.description}}</p>
+            </div>
+          </div>
+        </div> <!-- row -->
+        <hr class="visible-xs">
+      </div> <!--menu-item-title col-md-6-->
+    </div> <!-- ng-if="myinfo.registeredUser !== undefined-->
+  </div> <!--MyInfoController as myinfo-->
+</div> <!-- container -->

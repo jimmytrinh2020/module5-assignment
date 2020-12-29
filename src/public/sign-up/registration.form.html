@@ -1,0 +1,56 @@
+<h3>Please sign up for our newsletter...</h3>
+    <!-- <fieldset> -->
+      <legend>Registration Form</legend>
+      <form name="regForm" ng-controller="RegistrationController as reg" novalidate>
+        <input type="text" name="firstName" placeholder="First Name"
+          ng-model="reg.user.firstName" required>
+          <span ng-if="regForm.firstName.$error.required && regForm.firstName.$touched">
+          Frist Name must be entered
+          </span>
+          <br>
+        <input type="text" name="lastName" placeholder="Last Name"
+          ng-model="reg.user.lastName" required>
+          <span ng-if="regForm.lastName.$error.required && regForm.lastName.$touched">
+          Last Name must be entered
+          </span>
+          <br>
+        <input type="email" name="email" placeholder="Email"
+          ng-model="reg.user.email" required>
+          <span ng-if="(regForm.email.$error.required || regForm.email.$invalid) && regForm.email.$touched">
+            Must be a valid email address: handle@domain format
+          </span>
+          <br>
+        <input type="text" name="phone" placeholder="Phone ###-###-####"
+          ng-model="reg.user.phone"
+          pattern="(\d{3})-(\d{3})-(\d{4})"
+          required>
+          <span ng-if="(regForm.phone.$error.required || regForm.phone.$invalid) && regForm.phone.$touched">
+            Phone must be in the format ###-###-####.
+          </span>
+          <br>
+        <input type="text" name="itemShortName" placeholder="Favorite Menu Item (A1)"
+          ng-model="reg.user.itemShortName" required>
+          <span ng-if="regForm.itemShortName.$error.required && regForm.itemShortName.$touched">
+          Please enter favorite menu item number
+          </span>
+          <br>
+        <button
+          ng-disabled="regForm.$invalid"
+          ng-click="reg.submit()">Register
+        </button>
+        <!-- <div style="margin-top: 10px;">
+            Form valid? {{ regForm.$valid }}
+        </div> -->
+        <div id="info" ng-if="reg.completed">
+          Your Information Below Has Been Saved:
+        <br>
+          &nbsp&nbspName: {{reg.user.firstName}} {{reg.user.lastName}}<br>
+          &nbsp&nbspEmail: {{reg.user.email}} <br>
+          &nbsp&nbspPhone: {{reg.user.phone}} <br>
+          &nbsp&nbspFavorite Menu Item: {{reg.user.itemShortName.toUpperCase()}}<br>
+        </div>
+        <div id="error" ng-if="reg.showError">
+          No Such Dish Exist for Menu Item {{reg.user.itemShortName.toUpperCase()}}
+        </div>
+      </form>
+    <!-- <fieldset> -->
